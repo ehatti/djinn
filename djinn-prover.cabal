@@ -1,0 +1,14 @@
+cabal-version: 2.4
+name: djinn-prover
+version: 0.1.0.0
+
+author: Eashan Hatti
+maintainer: eashan.hatti@yale.edu
+
+executable djinn-prover
+    main-is: Main.hs
+    build-depends: base, containers, mtl, megaparsec, process
+    hs-source-dirs: app
+    default-language: Haskell2010
+    other-modules: Term, Proof, Library, Xml, Parse
+    default-extensions: FlexibleInstances, DeriveGeneric, OverloadedStrings, PatternSynonyms

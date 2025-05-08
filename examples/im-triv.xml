@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="./style.xml" ?>
+<theorem>
+  <title>The trivial implication</title>
+  <ident>im-triv</ident>
+  <goal>
+    <application>
+      <head>
+        <reference>forall</reference>
+      </head>
+      <argument>
+        <function>
+          <bindings>
+            <binding name="P"/>
+          </bindings>
+          <body>
+            <application>
+              <head>
+                <reference>implies</reference>
+              </head>
+              <argument>
+                <variable name="P">0</variable>
+              </argument>
+              <argument>
+                <variable name="P">0</variable>
+              </argument>
+            </application>
+          </body>
+        </function>
+      </argument>
+    </application>
+  </goal>
+  <proof>
+    <introduce>
+      <suppose>
+        <binding name="P"/>
+        <hypothesis name="h">
+          <variable name="P">0</variable>
+        </hypothesis>
+      </suppose>
+      <goal>
+        <variable name="P">0</variable>
+      </goal>
+      <proof>
+        <apply>
+          <assume name="h">0</assume>
+        </apply>
+      </proof>
+    </introduce>
+  </proof>
+</theorem>
