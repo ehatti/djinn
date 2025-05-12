@@ -1,0 +1,63 @@
+<document>
+  <theorem>
+    <title>Axiom of choice</title>
+    <goal>
+      <term>
+        <app>
+          <con>Forall</con>
+          <lam name="r">
+            <app>
+              <app>
+                <con>Implies</con>
+                <app>
+                  <con>Forall</con>
+                  <lam name="x">
+                    <app>
+                      <con>Exists</con>
+                      <lam name="y">
+                        <app>
+                          <app>
+                            <var>2</var>
+                            <var>1</var>
+                          </app>
+                          <var>0</var>
+                        </app>
+                      </lam>
+                    </app>
+                  </lam>
+                </app>
+              </app>
+              <app>
+                <con>Exists</con>
+                <lam name="f">
+                  <app>
+                    <con>Forall</con>
+                    <lam name="x">
+                      <app>
+                        <app>
+                          <var>2</var>
+                          <var>0</var>
+                        </app>
+                        <app>
+                          <var>1</var>
+                          <var>0</var>
+                        </app>
+                      </app>
+                    </lam>
+                  </app>
+                </lam>
+              </app>
+            </app>
+          </lam>
+        </app>
+      </term>
+      <display>\forall r. \,\left(\forall x. \,\exists y. \,r \, x \, y\right) \Rightarrow \exists f. \,\forall x. \,r \, x \, \left(f \, x\right)</display>
+    </goal>
+  </theorem>
+  <dependencies>
+    <reference addr="Exists" taxon="Definition" title="Existential quantifier"/>
+    <reference addr="Forall" taxon="Constant" title="Universal quantification"/>
+    <reference addr="Implies" taxon="Constant" title="Logical implication"/>
+  </dependencies>
+  <dependents/>
+</document>

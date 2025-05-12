@@ -1,0 +1,29 @@
+<document>
+  <theorem>
+    <title>Reflexivity of equality</title>
+    <goal>
+      <term>
+        <app>
+          <con>Forall</con>
+          <lam name="x">
+            <app>
+              <app>
+                <con>Eq</con>
+                <var>0</var>
+              </app>
+              <var>0</var>
+            </app>
+          </lam>
+        </app>
+      </term>
+      <display>\forall x. \,x = x</display>
+    </goal>
+  </theorem>
+  <dependencies>
+    <reference addr="Eq" taxon="Definition" title="Leibniz equality"/>
+    <reference addr="Forall" taxon="Constant" title="Universal quantification"/>
+  </dependencies>
+  <dependents>
+    <reference addr="EqDesc" taxon="Section" title="Leibniz Equality"/>
+  </dependents>
+</document>

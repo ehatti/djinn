@@ -1,23 +1,13 @@
-module Term where
+module Syntax where
 
-import Control.Monad.State
-import Control.Monad.Except
-import qualified Data.Map as M
-import Data.Void
-import GHC.Generics
-
-newtype ID = ID String
-  deriving (Eq, Ord, Generic, Show, Read)
+type ID = String
 
 data Term
   = Var Int
   | Lam String Term
   | App Term Term
   | Con ID
-  deriving (Generic, Show, Read)
-
-pattern Forall x e = App (Con (ID "forall")) (Lam x e)
-pattern Implies a b = App (App (Con (ID "implies")) a) b
+  deriving Show
 
 shift :: Term -> Term
 shift = go 0 where
@@ -26,7 +16,7 @@ shift = go 0 where
       if i < c then
         Var i
       else
-        Var (1 + i)
+        Var (i + 1)
     Lam x e -> Lam x (go (1 + c) e)
     App f v -> App (go c f) (go c v)
     Con f -> Con f
@@ -52,14 +42,43 @@ norm e = case e of
   App f v ->
     let v' = norm v in
     case norm f of
-      Lam x e -> norm (subst e v')
+      Lam x e -> subst e v'
       f' -> App f' v'
   Con f -> Con f
 
 equal :: Term -> Term -> Bool
-equal e t = case (e, t) of
-  (Var i, Var j) | i == j -> True
-  (Lam _ e, Lam _ t) -> equal e t
+equal a b = case (a, b) of
+  (Var i, Var j) -> i == j
+  (Lam _ a, Lam _ b) -> equal a b
   (App f v, App g w) -> equal f g && equal v w
-  (Con f, Con g) | f == g -> True
+  (Con f, Con g) -> f == g
   _ -> False
+
+data Source
+  = Assume Int
+  | Cite ID
+  deriving Show
+
+data Proof i
+  = Apply i Source [Term] [Proof i]
+  | Intro i [String] [String] (Proof i)
+  | Admit i
+  deriving Show
+
+data Block
+  = Prose String
+  | Include ID
+  deriving Show
+
+data Object i
+  = Section String [Block]
+  | Definition String Term
+  | Theorem String Term (Proof i)
+  | Constant String
+  | Axiom String Term
+  deriving Show
+
+index :: Eq a => a -> [a] -> Maybe Int
+index _ [] = Nothing
+index x (y:ys) | x == y = pure 0
+index x (_:ys) = (1+) <$> index x ys

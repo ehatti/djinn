@@ -1,0 +1,13 @@
+<document>
+  <constant>
+    <title>Logical implication</title>
+  </constant>
+  <dependencies/>
+  <dependents>
+    <reference addr="Eq" taxon="Definition" title="Leibniz equality"/>
+    <reference addr="EqRw" taxon="Theorem" title="Rewriting"/>
+    <reference addr="Exists" taxon="Definition" title="Existential quantifier"/>
+    <reference addr="HilbertChoiceAxiom" taxon="Axiom" title="Specification of Hilbert's choice operator"/>
+    <reference addr="RelationalChoice" taxon="Theorem" title="Axiom of choice"/>
+  </dependents>
+</document>

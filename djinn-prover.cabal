@@ -7,8 +7,8 @@ maintainer: eashan.hatti@yale.edu
 
 executable djinn-prover
     main-is: Main.hs
-    build-depends: base, containers, mtl, megaparsec, process
+    build-depends: base, containers, mtl, megaparsec, directory, filepath
     hs-source-dirs: app
     default-language: Haskell2010
-    other-modules: Term, Proof, Library, Xml, Parse
-    default-extensions: FlexibleInstances, DeriveGeneric, OverloadedStrings, PatternSynonyms
+    other-modules: Syntax, Parse, Compile, Xml, Display
+    default-extensions: FlexibleInstances, DeriveGeneric, OverloadedStrings, PatternSynonyms, BlockArguments, ImportQualifiedPost

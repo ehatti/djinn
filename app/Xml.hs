@@ -5,7 +5,7 @@ import Data.List
 data Elem = Elem String [(String, String)] [Elem] | Text String
 
 render :: Elem -> String
-render e = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<?xml-stylesheet type=\"text/xsl\" href=\"./style.xml\" ?>\n" ++ go "" e where
+render e = go "" e where
   go idn (Elem name attrs []) =
     idn ++ "<" ++ name ++ goAttrs attrs ++ "/>"
   go idn (Elem name attrs [Text s]) =

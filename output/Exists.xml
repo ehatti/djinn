@@ -1,0 +1,44 @@
+<document>
+  <definition>
+    <title>Existential quantifier</title>
+    <term>
+      <lam name="p">
+        <app>
+          <con>Forall</con>
+          <lam name="q">
+            <app>
+              <app>
+                <con>Implies</con>
+                <app>
+                  <con>Forall</con>
+                  <lam name="x">
+                    <app>
+                      <app>
+                        <con>Implies</con>
+                        <app>
+                          <var>2</var>
+                          <var>0</var>
+                        </app>
+                      </app>
+                      <var>1</var>
+                    </app>
+                  </lam>
+                </app>
+              </app>
+              <var>0</var>
+            </app>
+          </lam>
+        </app>
+      </lam>
+    </term>
+    <display>\lambda p. \,\forall q. \,\left(\forall x. \,p \, x \Rightarrow q\right) \Rightarrow q</display>
+  </definition>
+  <dependencies>
+    <reference addr="Forall" taxon="Constant" title="Universal quantification"/>
+    <reference addr="Implies" taxon="Constant" title="Logical implication"/>
+  </dependencies>
+  <dependents>
+    <reference addr="HilbertChoiceAxiom" taxon="Axiom" title="Specification of Hilbert's choice operator"/>
+    <reference addr="RelationalChoice" taxon="Theorem" title="Axiom of choice"/>
+  </dependents>
+</document>

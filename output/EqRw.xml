@@ -1,0 +1,56 @@
+<document>
+  <theorem>
+    <title>Rewriting</title>
+    <goal>
+      <term>
+        <app>
+          <con>Forall</con>
+          <lam name="x">
+            <app>
+              <con>Forall</con>
+              <lam name="y">
+                <app>
+                  <app>
+                    <con>Implies</con>
+                    <app>
+                      <app>
+                        <con>Eq</con>
+                        <var>1</var>
+                      </app>
+                      <var>0</var>
+                    </app>
+                  </app>
+                  <app>
+                    <con>Forall</con>
+                    <lam name="p">
+                      <app>
+                        <app>
+                          <con>Implies</con>
+                          <app>
+                            <var>0</var>
+                            <var>2</var>
+                          </app>
+                        </app>
+                        <app>
+                          <var>0</var>
+                          <var>1</var>
+                        </app>
+                      </app>
+                    </lam>
+                  </app>
+                </app>
+              </lam>
+            </app>
+          </lam>
+        </app>
+      </term>
+      <display>\forall x. \,\forall y. \,x = y \Rightarrow \forall p. \,p \, x \Rightarrow p \, y</display>
+    </goal>
+  </theorem>
+  <dependencies>
+    <reference addr="Eq" taxon="Definition" title="Leibniz equality"/>
+    <reference addr="Forall" taxon="Constant" title="Universal quantification"/>
+    <reference addr="Implies" taxon="Constant" title="Logical implication"/>
+  </dependencies>
+  <dependents/>
+</document>

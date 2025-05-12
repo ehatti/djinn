@@ -1,0 +1,39 @@
+<document>
+  <definition>
+    <title>Leibniz equality</title>
+    <term>
+      <lam name="x">
+        <lam name="y">
+          <app>
+            <con>Forall</con>
+            <lam name="p">
+              <app>
+                <app>
+                  <con>Implies</con>
+                  <app>
+                    <var>0</var>
+                    <var>2</var>
+                  </app>
+                </app>
+                <app>
+                  <var>0</var>
+                  <var>1</var>
+                </app>
+              </app>
+            </lam>
+          </app>
+        </lam>
+      </lam>
+    </term>
+    <display>\lambda x. \,\lambda y. \,\forall p. \,p \, x \Rightarrow p \, y</display>
+  </definition>
+  <dependencies>
+    <reference addr="Forall" taxon="Constant" title="Universal quantification"/>
+    <reference addr="Implies" taxon="Constant" title="Logical implication"/>
+  </dependencies>
+  <dependents>
+    <reference addr="EqDesc" taxon="Section" title="Leibniz Equality"/>
+    <reference addr="EqRefl" taxon="Theorem" title="Reflexivity of equality"/>
+    <reference addr="EqRw" taxon="Theorem" title="Rewriting"/>
+  </dependents>
+</document>

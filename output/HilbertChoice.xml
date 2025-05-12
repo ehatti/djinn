@@ -1,0 +1,9 @@
+<document>
+  <constant>
+    <title>Hilbert's choice operator</title>
+  </constant>
+  <dependencies/>
+  <dependents>
+    <reference addr="HilbertChoiceAxiom" taxon="Axiom" title="Specification of Hilbert's choice operator"/>
+  </dependents>
+</document>

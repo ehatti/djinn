@@ -1,0 +1,43 @@
+<document>
+  <axiom>
+    <title>Specification of Hilbert's choice operator</title>
+    <goal>
+      <term>
+        <app>
+          <con>Forall</con>
+          <lam name="p">
+            <app>
+              <app>
+                <con>Implies</con>
+                <app>
+                  <con>Exists</con>
+                  <lam name="x">
+                    <app>
+                      <var>1</var>
+                      <var>0</var>
+                    </app>
+                  </lam>
+                </app>
+              </app>
+              <app>
+                <var>0</var>
+                <app>
+                  <con>HilbertChoice</con>
+                  <var>0</var>
+                </app>
+              </app>
+            </app>
+          </lam>
+        </app>
+      </term>
+      <display>\forall p. \,\left(\exists x. \,p \, x\right) \Rightarrow p \, \left(\epsilon \, p\right)</display>
+    </goal>
+  </axiom>
+  <dependencies>
+    <reference addr="Exists" taxon="Definition" title="Existential quantifier"/>
+    <reference addr="Forall" taxon="Constant" title="Universal quantification"/>
+    <reference addr="HilbertChoice" taxon="Constant" title="Hilbert's choice operator"/>
+    <reference addr="Implies" taxon="Constant" title="Logical implication"/>
+  </dependencies>
+  <dependents/>
+</document>

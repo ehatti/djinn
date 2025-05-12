@@ -1,0 +1,68 @@
+<document>
+  <section>
+    <title>Leibniz Equality</title>
+    <block>
+      <prose>We define equality with the Leibniz definition.</prose>
+    </block>
+    <block>
+      <definition>
+        <title>Leibniz equality</title>
+        <term>
+          <lam name="x">
+            <lam name="y">
+              <app>
+                <con>Forall</con>
+                <lam name="p">
+                  <app>
+                    <app>
+                      <con>Implies</con>
+                      <app>
+                        <var>0</var>
+                        <var>2</var>
+                      </app>
+                    </app>
+                    <app>
+                      <var>0</var>
+                      <var>1</var>
+                    </app>
+                  </app>
+                </lam>
+              </app>
+            </lam>
+          </lam>
+        </term>
+        <display>\lambda x. \,\lambda y. \,\forall p. \,p \, x \Rightarrow p \, y</display>
+      </definition>
+    </block>
+    <block>
+      <prose>Presented below are proofs of the basic properties.</prose>
+    </block>
+    <block>
+      <theorem>
+        <title>Reflexivity of equality</title>
+        <goal>
+          <term>
+            <app>
+              <con>Forall</con>
+              <lam name="x">
+                <app>
+                  <app>
+                    <con>Eq</con>
+                    <var>0</var>
+                  </app>
+                  <var>0</var>
+                </app>
+              </lam>
+            </app>
+          </term>
+          <display>\forall x. \,x = x</display>
+        </goal>
+      </theorem>
+    </block>
+  </section>
+  <dependencies>
+    <reference addr="Eq" taxon="Definition" title="Leibniz equality"/>
+    <reference addr="EqRefl" taxon="Theorem" title="Reflexivity of equality"/>
+  </dependencies>
+  <dependents/>
+</document>
