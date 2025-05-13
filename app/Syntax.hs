@@ -59,10 +59,10 @@ data Source
   | Cite ID
   deriving Show
 
-data Proof i
-  = Apply i Source [Term] [Proof i]
-  | Intro i [String] [String] (Proof i)
-  | Admit i
+data Proof
+  = Apply Source [Term] [Proof]
+  | Intro [String] [String] Proof
+  | Admit
   deriving Show
 
 data Block
@@ -70,10 +70,10 @@ data Block
   | Include ID
   deriving Show
 
-data Object i
+data Object
   = Section String [Block]
   | Definition String Term
-  | Theorem String Term (Proof i)
+  | Theorem String Term Proof
   | Constant String
   | Axiom String Term
   deriving Show

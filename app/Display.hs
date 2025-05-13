@@ -83,13 +83,6 @@ initNs nd =
 initNd :: S.Set ID
 initNd = S.fromList ["Forall", "Implies", "Eq", "Exists", "HilbertChoice"]
 
-strip :: String -> String
-strip s = case s of
-  c:s | elem c [' ', '\n'] -> strip s
-  s -> s
-
-formatProse s = reverse (strip (reverse (strip s)))
-
 displayBlock :: M.Map ID (Object Info) -> Block -> Elem
 displayBlock objs b = case b of
   Include name -> displayObject objs name (objs M.! name)

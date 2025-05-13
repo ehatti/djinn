@@ -46,12 +46,14 @@ term bs = label "term" (
   (do
     f <- atomic bs
     es <- many do
-      forM_ keywords \kw -> notFollowedBy (space *> string kw)
+      forM_ keywords \kw -> do
+        notFollowedBy (space *> string kw)
+        notFollowedBy (space *> lambda bs)
       space
       atomic bs
     space
-    -- lam <- try (lambda bs >>= \e -> pure [e]) <|> pure []
-    pure (foldl App f es)))
+    lam <- try (lambda bs >>= \e -> pure [e]) <|> pure []
+    pure (foldl App f (es ++ lam))))
 
 source :: [String] -> Parser Source
 source hs =
@@ -65,7 +67,7 @@ source hs =
       Just ix -> pure (Assume ix)
       Nothing -> fail ("Unbound hypothesis: " ++ name))
 
-proof :: [String] -> [String] -> Parser (Proof ())
+proof :: [String] -> [String] -> Parser Proof
 proof bs hs =
   label "introduction" (do
     string "intro"; space
@@ -76,7 +78,7 @@ proof bs hs =
     ys <- many (space *> some lowerChar); space
     char ']'; space
     p <- proof (reverse xs ++ bs) (reverse ys ++ hs)
-    pure (Intro () xs hs p)) <|>
+    pure (Intro xs hs p)) <|>
   label "application" (do
     string "apply"; space
     src <- source hs; space
@@ -87,10 +89,17 @@ proof bs hs =
     space
     ps <- many (string "by" *> space *> proof bs hs <* space <* string "end")
     pl <- try (space *> proof bs hs >>= \p -> pure [p]) <|> pure []
-    pure (Apply () src es (ps ++ pl))) <|>
+    pure (Apply src es (ps ++ pl))) <|>
   label "admit" (do
     string "admit"
-    pure (Admit ()))
+    pure Admit)
+
+strip :: String -> String
+strip s = case s of
+  c:s | elem c [' ', '\n'] -> strip s
+  s -> s
+
+formatProse s = reverse (strip (reverse (strip s)))
 
 block :: Parser Block
 block =
@@ -98,13 +107,13 @@ block =
     string "text"
     cs <- many (notFollowedBy (string "end") *> anySingle)
     string "end"
-    pure (Prose cs)) <|>
+    pure (Prose (formatProse cs))) <|>
   label "inclusion" (do
     string "include"; space
     name <- (:) <$> upperChar <*> nameCont
     pure (Include name))
 
-object :: Parser (Object ())
+object :: Parser Object
 object =
   label "definition" (do
     string "definition"; space
@@ -143,5 +152,6 @@ object =
     char '"'
     name <- many (notFollowedBy (char '"') *> anySingle)
     char '"'; space
-    e <- term []
+    e <- term []; space
+    string "end"
     pure (Axiom name e))

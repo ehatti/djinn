@@ -1,5 +1,5 @@
 theorem "Reflexivity of equality"
-  Forall (\x. Eq x x)
+  Forall \x. Eq x x
 by
   intro (x) []
   apply Eq (\f. f x x)
